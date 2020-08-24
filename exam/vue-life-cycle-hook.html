@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+  {{ text }}
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+  /**
+   ✨ 인스턴스 라이프 사이클
+   Vue 인스턴스는 생성될 때 일련의 초기화 과정을 거치게 된다.
+   이러한 초기화 단계에서 사용자 정의 로직을 실행할 수 있는 라이프사이클 훅이 호출된다.
+
+   created: 인스턴스 생성 (DOM 생정 이전)
+   mounted: DOM 생성 후 인스턴스 마운트
+   updated: 반응형 데이터 변경 Virtual DOM 리렌더
+   destroyed: 인스턴스 종료
+  **/
+
+  let vm = new Vue({
+      el: '#app',
+      data: {
+          text: 'Hello World'
+      },
+      created: function () {
+          console.log('created', this)
+      },
+      mounted: function () {
+          console.log('mounted', this)
+      },
+      updated: function () {
+          console.log('updated', this)
+      },
+      destroyed: function () {
+          alert('destroyed')
+      }
+  })
+
+  // 3초 후 updated hook 호출
+  setTimeout(() => {
+      vm.text = 'I will change your text and destroy'
+  }, 3000)
+
+  // 5초 후 destroyed hook 호출
+  setTimeout(() => {
+      vm.$destroy()
+  }, 5000)
+</script>
+</html>
