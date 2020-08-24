@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="app">
+    <ol>
+      <!--
+      v-for: list 에서 item 객체 하나씩 바인딩
+      v-bind: item 객체를 todo 객체로 바인딩
+      key: Virtual DOM으로 동작하는 Vue의 특성상 불필요한 재렌더를 방지하기위해 key를 바인딩해 준다.
+      -->
+      <todo-item
+          v-for="item in list"
+          v-bind:todo="item"
+          v-bind:key="item.id"
+      >
+      </todo-item>
+    </ol>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- 개발버전 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> --><!-- 상용버전 -->
+<script type="text/javascript">
+    // ✨ Vue 에서 컴포넌트는 미리 정의된 옵션을 가진 Vue 인스턴스이다.
+    // 1. 컴포넌트 등록하기
+    // 컴포넌트를 정의하면 부모앱에 영향을 주지않고 하위 컴포넌트에서 더욱 복잡한 로직을 자유롭게 구현할 수 있다.
+  Vue.component('todo-item', {
+      props: ['todo'], //부모로부터 props 인터페이스로 todo를 받아옴
+      template: '<li>{{ todo.text }}</li>'
+  })
+
+  let app = new Vue({
+      el: '#app',
+      data: {
+          list: [
+              { id: 1, text: 'Vegetables' },
+              { id: 2, text: 'Cheese' },
+              { id: 3, text: 'Pig' },
+          ]
+      }
+  })
+</script>
+</html>
