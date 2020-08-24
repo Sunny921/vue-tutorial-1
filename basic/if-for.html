@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="app3" v-if="seen">
+    You can see me 🙂
+  </div>
+
+  <div id="app4" >
+    <ol>
+      <li v-for="(todo, index) in todos"> {{ index }} {{ todo.text }} </li>
+    </ol>
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- 개발버전 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> --><!-- 상용버전 -->
+<script type="text/javascript">
+  // ✨ exam1) 조건 directive : v-if
+  // app3.senn = false -> 브라우저에서 메시지가 사라지고, DOM 구조에 또한 사라짐을 확인할 수 있다
+  let app3 = new Vue({
+      el: '#app3',
+      data: {
+          seen: true
+      }
+  })
+
+  // ✨ exam2) 반복 directive - for
+  // 동적으로 리스트 추가 app4.todos.push({text: 'more...'})
+  let app4 = new Vue({
+      el: '#app4',
+      data: {
+          todos: [
+              { text: 'Javascript 배우기' },
+              { text: 'Vue 배우기' },
+              { text: 'React 배우기' },
+              { text: 'Typescript 배우기' },
+              { text: 'NodeJS 배우기' },
+          ]
+      }
+  })
+
+</script>
+</html>
