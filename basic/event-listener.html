@@ -1,0 +1,45 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+  <div id="app5">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">reverse</button>
+  </div>
+
+  <div id="app6">
+    <p>{{ message }}</p>
+    <input v-model="message">
+  </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- 개발버전 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> --><!-- 상용버전 -->
+<script type="text/javascript">
+  // ✨ exam1) 메소드 호출  : v-on
+  // 메소드를 호출하는 이벤트 리스너 추가하기
+
+  let app5 = new Vue({
+      el: '#app5',
+      data: {
+          message: 'Hello, Vue.js!'
+      },
+      methods: {
+          reverseMessage() {
+              // message -> char array 변환 -> 뒤집기 -> array 문자열로 조인
+              this.message = this.message.split('').reverse().join('')
+          }
+      }
+  })
+
+  // ✨ exam2) 양방향 바인딩 : v-model
+  // 브라우저 input 창에서 값을 새로 입력할때마다 동적으로 바인딩된 데이터가 브라우저에 표출되는것을 확인할 수 있다.
+  // Angular 이후로 오랜만에 보는 양방향 바인딩이다 😯
+  let app6 = new Vue({
+      el: '#app6',
+      data: {
+          message: '이것은 양방향 바인딩 데이터~'
+      }
+  })
+</script>
+</html>
