@@ -1,0 +1,42 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+  {{ a }}
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> <!-- 개발버전 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/vue"></script> --><!-- 상용버전 -->
+<script type="text/javascript">
+  // Vue 앱은 인스턴스를 생성하는것 부터 시작한다.
+  // Point1) data 로 등록된 모든 속성은 '반응형 데이터 (reactive data)'가 된다. 값이 변경되면 화면의 재 렌더링이 일어난다는 의미이다.
+  const data = { a: 1 }
+  let vm = new Vue({
+      el: '#app',
+      data: data
+  })
+  vm.a = 100; // // Point1) vm앱의 데이터 값을 변경하였으므로 화면의 렌더링이 일어난다.
+
+  // Point2) 초기에 정의하진 Data 속성은 나중에 추가하더라도 반응형 데이터가 되지 않는다
+  vm.b = 'hello world'; //Point2) b속성은 나중에 정의한 값 이기 때문에 이렇게 추가 하더라도 화면의 렌더링이 일어나지 않는다.
+  /**
+   * 반응형 데이터로 정의하고 싶은 속성은 미리 초기값을 설정하여 data 에 넣어두자!
+   * data: {
+   *   a: 0,
+   *   b: '',
+   *   arr: []
+   * }
+   */
+
+  // Vue 인스턴스에서 제공하는 속성과 메소드는 앞에 '$' 접두어가 붙는다.
+  // vm.$data, vm.$el, vm.$watch 와 같이 접근이 가능하다.
+  vm.$watch('a', function (newVal, oldVal) {
+      console.log (`newVal = ${newVal}, oldVal = ${oldVal}`)
+      // vm.a 의 값이 변경되면 호출된다.
+      // newVal 변경된 값, oldVal 변경전 값
+  })
+
+</script>
+</html>
