@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+  <input v-model.lazy="message">
+  <child-component :message="message"></child-component>
+</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    /**
+     ✨ 부모가 자식에게.. props
+     props 는 단방향 바인딩이다. 부모가 자식에게 값을 넘길때 사용한다.
+     **/
+
+    Vue.component('child-component', {
+        props: ['message'],
+        template: '<span>{{ message }}</span>'
+    })
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello world'
+        },
+    })
+</script>
+</html>

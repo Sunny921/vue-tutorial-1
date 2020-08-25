@@ -1,0 +1,38 @@
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<div id="app">
+  <h1 v-once>난 한번만 렌더링 해줄래?</h1>
+  <keep-alive>
+    <component v-bind:is="currentView"></component>
+  </keep-alive>
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    /**
+     ✨ 동적 컴포넌트
+     **/
+
+    let home = {
+        template: '<p>Hello world</p>'
+    }
+    let home2 = {
+        template: '<p>Hello world2</p>'
+    }
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            currentView: home
+        },
+        component: {
+            home: home,
+            home2: home2,
+        }
+    })
+
+</script>
+</html>
